@@ -14,7 +14,6 @@ import { LeadListComponent } from './lead-list/lead-list.component';
 import { LeadDetailsComponent } from './lead-details/lead-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { SidebarModule } from 'ng-sidebar';
 
 // routes
 import routes from './routes';
@@ -37,7 +36,6 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    SidebarModule.forRoot(),
     FormsModule
   ],
   providers: [
