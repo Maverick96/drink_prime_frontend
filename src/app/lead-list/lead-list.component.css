@@ -1,0 +1,13 @@
+.home{
+    display: flex;
+}
+
+table{
+    margin-left: 12vw;
+    width: 88vw;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center
+}

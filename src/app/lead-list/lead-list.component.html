@@ -1,0 +1,44 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col" *ngFor="let column of columnList" (click)="changeSort(column)">
+        {{column.text}}
+
+        <span *ngIf="column.id === sortBy['id']">
+          <img *ngIf="sortBy['sortAsc']" src="/src/assets/images/sort-down.svg" width="15" height="15" />
+          <img *ngIf="!sortBy['sortAsc']" src="/src/assets/images/sort-up.svg" width="15" height="15" />
+        </span>
+
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let lead of leadListData" (click)="openDetails(lead['leadId'])">
+      <td *ngFor="let column of columnList">
+        <div *ngIf="column['id'] !== 'createdAt';else dateCol">
+          {{lead[column['id']]}}
+        </div>
+
+        <ng-template #dateCol>
+          {{lead[column['id']] | date:'medium'}}
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <button class="btn btn-primary" (click)="prevPage()">
+    Previous
+  </button>
+
+  <select class="ml-3 mr-3" (change)="changePagination($event)" [(ngModel)]="limit">
+    <option *ngFor="let page of paginationList" [selected]="page === limit" [value]="page">{{page}}</option>
+
+  </select>
+
+  <button class="btn btn-primary" (click)="nextPage()">
+    Next
+  </button>
+</div>

@@ -1,0 +1,5 @@
+<div *ngIf="!isLogin" class="sidenav">
+  <a routerLink="/create-lead">Create Lead</a>
+  <a routerLink="/lead-list">List Leads</a>
+  <a (click)="logout()">Logout</a>
+</div>

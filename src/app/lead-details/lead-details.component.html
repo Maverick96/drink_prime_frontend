@@ -1,0 +1,65 @@
+<div class="container">
+  <form *ngIf="isFormCreated" [formGroup]="createLeadForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="!isCreate" class="row mb-3">
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name:</label>
+          <input type="text" [readonly]="!isCreate" formControlName="name" class="form-control" id="name"
+            aria-describedby="name" placeholder="Enter name">
+          <small *ngIf="createLeadForm.controls['name'].invalid && createLeadForm.controls['name'].touched"
+            class="form-text text-muted">Name is required field</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email:</label>
+          <input type="email" [readonly]="!isCreate" formControlName="email" class="form-control" id="email"
+            aria-describedby="emailHelp" placeholder="Enter email">
+          <small *ngIf="createLeadForm.controls['email'].invalid && createLeadForm.controls['email'].touched"
+            class="form-text text-muted">Email is required field</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mobile:</label>
+          <input type="number" [readonly]="!isCreate" formControlName="mobile" class="form-control" id="mobile"
+            aria-describedby="mobile" placeholder="Enter mobile">
+          <small *ngIf="createLeadForm.controls['mobile'].invalid && createLeadForm.controls['mobile'].touched"
+            class="form-text text-muted">Mobile is required field</small>
+        </div>
+
+      </div>
+
+      <div class="col-6">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Address:</label>
+          <textarea [readonly]="!isCreate" formControlName="address" class="form-control" id="address"
+            aria-describedby="address" placeholder="Enter address">
+              </textarea>
+          <small *ngIf="createLeadForm.controls['address'].invalid && createLeadForm.controls['address'].touched"
+            class="form-text text-muted">Address is required field</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Area:</label>
+          <input type="text" [readonly]="!isCreate" formControlName="area" class="form-control" id="area"
+            aria-describedby="area" placeholder="Enter area">
+          <small *ngIf="createLeadForm.controls['area'].invalid && createLeadForm.controls['area'].touched"
+            class="form-text text-muted">Area is required field</small>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isCreate" class="row">
+      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+        [disabled]="createLeadForm.invalid">Create</button>
+    </div>
+
+  </form>
+
+</div>
