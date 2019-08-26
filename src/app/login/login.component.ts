@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../shared/services/login.service';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
@@ -46,6 +46,12 @@ export class LoginComponent implements OnInit {
           });
           console.error(err);
         })
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.login$) {
+      this.login$.unsubscribe();
     }
   }
 

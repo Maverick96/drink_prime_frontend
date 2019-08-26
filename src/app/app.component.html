@@ -1,5 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <!-- <div *ngIf="!isLoading"> -->
   <app-side-bar></app-side-bar>
   <router-outlet></router-outlet>
+  <!-- </div> -->
 </div>

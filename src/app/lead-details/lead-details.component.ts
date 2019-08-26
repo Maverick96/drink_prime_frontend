@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LeadsService } from '../shared/services/leads.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './lead-details.component.html',
   styleUrls: ['./lead-details.component.css']
 })
-export class LeadDetailsComponent implements OnInit {
+export class LeadDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private leadService: LeadsService,
@@ -108,6 +108,15 @@ export class LeadDetailsComponent implements OnInit {
             console.error(err)
           })
 
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.leadDetails$) {
+      this.leadDetails$.unsubscribe();
+    }
+    if (this.createLead$) {
+      this.createLead$.unsubscribe();
     }
   }
 

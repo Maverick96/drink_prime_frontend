@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent implements OnInit {
-  @ViewChild('sidebar') sideBar: ElementRef;
+export class SideBarComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private loginService: Router) { }
   isLogin: boolean = true;
+  routerEvents$: Subscription;
   ngOnInit() {
-    this.router.events.subscribe((val) => {
+    this.routerEvents$ = this.router.events.subscribe((val) => {
       // see also 
       console.log(val)
       if (val instanceof NavigationEnd) {
@@ -28,6 +28,12 @@ export class SideBarComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login'])
+  }
+
+  ngOnDestroy() {
+    if (this.routerEvents$) {
+      this.routerEvents$.unsubscribe();
+    }
   }
 
 }

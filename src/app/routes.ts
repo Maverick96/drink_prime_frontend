@@ -31,4 +31,4 @@ const appRoutes: Routes = [
     { path: '**', component: PageNotFoundComponent }
 ];
 
-export default appRoutes;
+export { appRoutes };

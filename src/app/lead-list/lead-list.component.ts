@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LeadsService } from '../shared/services/leads.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './lead-list.component.html',
   styleUrls: ['./lead-list.component.css']
 })
-export class LeadListComponent implements OnInit {
+export class LeadListComponent implements OnInit, OnDestroy {
 
   constructor(private leadService: LeadsService,
     private toastrService: ToastrService,
@@ -53,6 +53,7 @@ export class LeadListComponent implements OnInit {
   }
 
   fetchList() {
+    console.log("FETCH ")
     let sort = this.sortBy['id'];
     if (!this.sortBy['sortAsc']) {
       sort = '-' + sort;
@@ -111,6 +112,12 @@ export class LeadListComponent implements OnInit {
     this.offset = 0;
     this.sortBy = this.columnList[0];
     this.fetchList();
+  }
+
+  ngOnDestroy() {
+    if (this.leadList$) {
+      this.leadList$.unsubscribe();
+    }
   }
 
 }

@@ -16,8 +16,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 
 // routes
-import routes from './routes';
+import { appRoutes } from './routes';
 import { HttpInterceptorService } from './shared/services/http-interceptor.service';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,12 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
     LeadListComponent,
     LeadDetailsComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
